@@ -4,3 +4,16 @@ html, body, #app {
     margin: 0;
     padding: 0;
 }
+
+.el-breadcrumb {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.el-card {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+.el-table {
+    margin: 20px 0 20px 0;
+}

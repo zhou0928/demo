@@ -1,21 +1,179 @@
 <template>
-  <div>
-    <el-button @click='loginOut'>退出</el-button>
-  </div>
+  <el-container>
+    <el-header>
+      <div>
+        <img src='../assets/logo.png' alt=''>
+        <span>电商后台管理系统</span>
+      </div>
+      <el-button type='primary' @click='loginOut'>退出</el-button>
+    </el-header>
+    <el-container>
+      <el-aside :width='isCollapse ? "64px" : "200px"'>
+        <div class='toggle-button' @click='toggle'>|||</div>
+        <!--左侧菜单区域-->
+        <el-menu
+          default-active='2'
+          class='el-menu-vertical-demo'
+          @open='handleOpen'
+          @close='handleClose'
+          background-color='#333744'
+          text-color='#fff'
+          active-text-color='#409eff'
+          unique-opened
+          :collapse='isCollapse'
+          :collapse-transition='false'
+          router
+        >
+          <!--一级菜单-->
+          <el-submenu :index="item.id+' '" v-for='item in menulist' :key='item.id'>
+            <!-- 一级菜单模板区域 -->
+            <template slot='title'>
+              <!--图标-->
+              <i :class='iconsObj[item.id]'></i>
+              <!--文本-->
+              <span>{{ item.authName }}</span>
+            </template>
+            <!--二级菜单-->
+            <el-menu-item :index='"/"+subItem.path' v-for='subItem in item.children' :key='subItem.id'>
+              <template slot='title'>
+                <i class='el-icon-menu'></i>
+                <span>{{ subItem.authName }}</span>
+              </template>
+            </el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Home',
+  data() {
+    return {
+      // 左侧菜单列表
+      menulist: [],
+      iconsObj: {
+        '125': 'iconfont icon-user',
+        '103': 'iconfont icon-tijikongjian',
+        '101': 'iconfont icon-shangpin',
+        '102': 'iconfont icon-danju-tianchong',
+        '145': 'iconfont icon-baobiao'
+      },
+      isCollapse: false
+    }
+  },
+  created() {
+    this.getMenuList()
+    console.log(this.iconsObj)
+  },
   methods: {
     loginOut() {
       window.sessionStorage.clear()
       this.$router.push('/login')
+    },
+
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath)
+    },
+    async getMenuList() {
+      const { data: res } = await axios.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      // res.data = this.menulist
+      // console.log(res.data)
+      this.menulist = res.data
+      console.log(this.menulist)
+
+
+    },
+    toggle() {
+      this.isCollapse = !this.isCollapse
     }
+
   }
 }
 </script>
 
-<style scoped>
+<style lang='less' scoped>
+
+.el-container {
+  height: 100%;
+
+}
+
+//头部
+.el-header {
+  background-color: #373D41;
+  color: #FFF;
+  line-height: 60px;
+  height: 100px !important;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  align-items: center;
+  font-size: 20px;
+
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  > div img {
+    height: 100px
+  }
+
+  .el-button {
+    height: 40px;
+    border-radius: 5px;
+  }
+
+}
+
+//Aside部分
+.el-aside {
+  background-color: #333744;
+  color: #FFF;
+  text-align: center;
+
+  .iconfont {
+    margin-right: 10px;
+  }
+
+  .el-menu {
+    border-right: none;
+  }
+
+  .el-radio-group {
+    background-color: #333744;
+  }
+
+  .toggle-button {
+    background-color: #4a5064;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+  }
+
+}
+
+
+//Main部分
+.el-main {
+  background-color: #EAEDF1;
+  color: #333;
+}
 
 </style>
