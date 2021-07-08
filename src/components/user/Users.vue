@@ -199,7 +199,7 @@ export default {
         pagesize: 10
       },
       userslist: [],
-      total: 0,
+      total:0,
       addDialogVisible: false,
       // 添加对话框的表单
       addForm: {

@@ -6,9 +6,9 @@ import Welcome from '../components/Welcome'
 import Users from '../components/user/Users'
 import Roles from '../components/power/Roles'
 import Rights from '../components/power/Rights'
-import Goods from '../components/Goods'
-import Params from '../components/Params'
-import Categories from '../components/Categories'
+import Goods from '../components/goods/Goods'
+import Params from '../components/goods/Params'
+import Cate from '../components/goods/Cate'
 import Orders from '../components/Orders'
 import Reports from '../components/Reports'
 
@@ -55,7 +55,7 @@ const routes = [
       },
       {
         path:'/categories',
-        component: Categories
+        component: Cate
       },
       {
         path: '/orders',

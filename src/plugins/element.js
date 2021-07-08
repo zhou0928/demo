@@ -18,7 +18,18 @@ import {
   RadioButton,
   Breadcrumb,
   BreadcrumbItem,
-  Card, Table, TableColumn, Tag, Pagination, Switch, Tooltip, Dialog, MessageBox, Tree, Select, Option
+  Card,
+  Table,
+  TableColumn,
+  Tag,
+  Pagination,
+  Switch,
+  Tooltip,
+  Dialog,
+  MessageBox,
+  Tree,
+  Select,
+  Option, Cascader
 } from 'element-ui'
 
 Vue.use(Button)
@@ -49,5 +60,6 @@ Vue.use(Dialog)
 Vue.use(Tree)
 Vue.use(Option)
 Vue.use(Select)
+Vue.use(Cascader)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
