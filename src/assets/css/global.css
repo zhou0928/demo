@@ -15,6 +15,7 @@ html, body, #app {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.15) !important;
 }
 
+
 .el-table {
     margin: 20px 0 20px 0;
 }
@@ -22,4 +23,8 @@ html, body, #app {
 /*级联选择器*/
 .el-cascader-menu {
     height: 240px;
+}
+
+.ql-editor {
+    min-height: 300px;
 }
