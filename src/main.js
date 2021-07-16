@@ -16,6 +16,8 @@ import 'quill/dist/quill.bubble.css'
 // 将富文本编辑器，注册为全局可用组件
 Vue.use(VueQuillEditor)
 
+import vRegion from 'v-region'
+Vue.use(vRegion)
 import axios from 'axios'
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'

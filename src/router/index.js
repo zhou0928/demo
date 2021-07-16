@@ -9,7 +9,7 @@ import Rights from '../components/power/Rights'
 import Goods from '../components/goods/List'
 import Params from '../components/goods/Params'
 import Cate from '../components/goods/Cate'
-import Orders from '../components/Orders'
+import Order from '../components/order/Order'
 import Reports from '../components/Reports'
 import Add from '../components/goods/Add'
 
@@ -60,7 +60,7 @@ const routes = [
       },
       {
         path: '/orders',
-        component: Orders
+        component: Order
       },
       {
         path: '/reports',
